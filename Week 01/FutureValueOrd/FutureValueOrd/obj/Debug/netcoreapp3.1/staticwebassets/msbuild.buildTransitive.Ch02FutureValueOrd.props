@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Ch02FutureValueOrd.props" />
+</Project>
