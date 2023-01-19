@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "poWldpTQOy+BbD2vq8biOqBnbafwkg4u8ye4VQFj+F/NtrD29WNCr+vCtpUaKgCCcc9xtsEY3bNwTqWsCmQd+g==",
+  "dgSpecHash": "6KiEp09TNOsUk4oIWZkwbhgMODpHvpA4UfI3SiZU7kNdEHMPFYx7mY0SJaV73CavvyVf82NiaWQGLxV0Fv6ZkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\Week 01\\FutureValueOrd\\FutureValueOrd\\Ch02FutureValueOrd.csproj",
+  "projectFilePath": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\CIS174\\Week 01\\FutureValueOrd\\FutureValueOrd\\Ch02FutureValueOrd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jword\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\jword\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",

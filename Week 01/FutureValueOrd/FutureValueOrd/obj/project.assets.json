@@ -6264,11 +6264,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\Week 01\\FutureValueOrd\\FutureValueOrd\\Ch02FutureValueOrd.csproj",
+      "projectUniqueName": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\CIS174\\Week 01\\FutureValueOrd\\FutureValueOrd\\Ch02FutureValueOrd.csproj",
       "projectName": "Ch02FutureValueOrd",
-      "projectPath": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\Week 01\\FutureValueOrd\\FutureValueOrd\\Ch02FutureValueOrd.csproj",
+      "projectPath": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\CIS174\\Week 01\\FutureValueOrd\\FutureValueOrd\\Ch02FutureValueOrd.csproj",
       "packagesPath": "C:\\Users\\jword\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\Week 01\\FutureValueOrd\\FutureValueOrd\\obj\\",
+      "outputPath": "C:\\Users\\jword\\Desktop\\John School Information\\Spring 2023\\CIS 174\\Repos\\CIS174\\Week 01\\FutureValueOrd\\FutureValueOrd\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jword\\AppData\\Roaming\\NuGet\\NuGet.Config",

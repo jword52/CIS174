@@ -1,10 +1,10 @@
 ﻿body {
     padding: 1em;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Calibri, Arial, 'Arial Rounded MT'
 }
 h1{
     margin-top: 0;
-    color: navy;
+    color: lightblue;
 }
 label{
     display: inline-block;
