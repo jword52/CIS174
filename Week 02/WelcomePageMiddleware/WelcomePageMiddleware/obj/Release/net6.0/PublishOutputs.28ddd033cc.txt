@@ -1,0 +1,7 @@
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\WelcomePageMiddleware.exe
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\WelcomePageMiddleware.dll
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\WelcomePageMiddleware.deps.json
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\WelcomePageMiddleware.runtimeconfig.json
+C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 02\WelcomePageMiddleware\WelcomePageMiddleware\obj\Release\net6.0\PubTmp\Out\WelcomePageMiddleware.pdb
