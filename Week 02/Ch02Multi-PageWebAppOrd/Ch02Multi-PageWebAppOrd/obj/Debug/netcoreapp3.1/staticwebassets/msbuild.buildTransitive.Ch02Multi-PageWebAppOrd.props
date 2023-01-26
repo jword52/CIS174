@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Ch02Multi-PageWebAppOrd.props" />
+</Project>
