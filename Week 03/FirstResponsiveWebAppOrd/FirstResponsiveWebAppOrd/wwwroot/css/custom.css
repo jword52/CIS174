@@ -1,0 +1,33 @@
+﻿body {
+    padding: 1em;
+    font-family: Calibri, Arial, sans-serif
+    flex 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 0;
+    color: black;
+}
+
+label {
+    display: inline-block;
+    align-content: flex-end;
+}
+
+div {
+    margin-bottom: .5em;
+    text-align: left;
+    width: 100%;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    flex-direction: column;
+}

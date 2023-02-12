@@ -1,0 +1,49 @@
+﻿@model FirstResponsiveWebAppOrd.Models.FirstResponseModel
+@{
+    ViewBag.Title = "Age Calculator";
+}
+
+<!DOCTYPE html>
+<!-- Bootstrap and inline CSS used for formatting responsive page-->
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</head>
+
+<body class="container">
+	<div class="jumbotron jumbotron-fluid rounded bg-primary">
+		<h1>Age Calculator</h1>
+	</div>
+	<form asp-action="Index" method="post">
+		<div class="form-group">
+			<label asp-for="Name">Name:</label>
+			<input class="form-control" asp-for="Name" />
+		</div>
+		<div class="form-group">
+			<label asp-for="BirthYear">Birth Date:</label>
+			<input class="form-control" asp-for="BirthYear" />
+		</div>
+		<div class="form-group">
+			<label>Name: </label>
+			<input class="form-control" value="@ViewBag.Name" readonly />
+		</div>
+		<div class="form-group">
+			<label>Current Age:</label>
+			<input class="form-control" value="@ViewBag.Age.ToString()" readonly />
+		</div>
+		<div class="form-group">
+			<label>Age as of December 31st:</label>
+			<input class="form-control" value="@ViewBag.AgeAtEndOfYear.ToString()" readonly />
+		</div>
+		<div>
+			<button type="submit" class="btn btn-outline-primary btn-sm">Calculate</button>
+			<a asp-action="Index">Clear</a>
+		</div>
+	</form>
+</body>
+</html>
