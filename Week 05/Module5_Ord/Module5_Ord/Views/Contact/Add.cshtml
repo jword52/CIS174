@@ -1,0 +1,36 @@
+﻿@model Contact
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add New Contact</h2>
+
+<form asp-action="Add" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="ContactName">Name: </label>
+        <input asp-for="ContactName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactPhone">Phone #: </label>
+        <input asp-for="ContactPhone" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactAddress">Address: </label>
+        <input asp-for="ContactAddress" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactNote">Note: </label>
+        <input asp-for="ContactNote" class="form-control" />
+    </div>
+
+    <input type="hidden" asp-for="ContactID" />
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
+
