@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module5_Ord", "GuitarShop\Module5_Ord.csproj", "{13BB09CB-3BBE-4F01-A216-F4F23FC609AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Module5_Ord", "Module5_Ord\Module5_Ord.csproj", "{13BB09CB-3BBE-4F01-A216-F4F23FC609AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
