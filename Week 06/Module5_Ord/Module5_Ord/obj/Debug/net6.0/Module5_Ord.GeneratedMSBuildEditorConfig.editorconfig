@@ -1,0 +1,85 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Module5_Ord
+build_property.RootNamespace = Module5_Ord
+build_property.ProjectDir = C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 05\Module5_Ord\Module5_Ord\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\jword\Desktop\John School Information\Spring 2023\CIS 174\Module 05\Module5_Ord\Module5_Ord
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Areas/Admin/Views/Contact/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGFjdFxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Areas/Admin/Views/Contact/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGFjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Areas/Admin/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Assignment6/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXNzaWdubWVudDZcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Contact/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Contact/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Contact/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Home/Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Home/ContactUs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0VXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/jword/Desktop/John School Information/Spring 2023/CIS 174/Module 05/Module5_Ord/Module5_Ord/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
