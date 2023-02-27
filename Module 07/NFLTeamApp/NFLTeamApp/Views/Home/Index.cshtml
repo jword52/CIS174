@@ -16,8 +16,8 @@
             @foreach (Conference conf in Model.Conferences)
             {
                 <a asp-action="Index"
-               asp-route-conference="@conf.ConferenceID"
-               asp-route-division="@Model.ActiveDiv"
+               asp-route-activeConf="@conf.ConferenceID"
+               asp-route-activeDiv="@Model.ActiveDiv"
                class="list-group-item
                     @Model.CheckActiveConf(conf.ConferenceID)">
                     @conf.Name
@@ -30,8 +30,8 @@
             @foreach (Division div in Model.Divisions)
             {
                 <a asp-action="Index"
-               asp-route-conference="@Model.ActiveConf"
-               asp-route-division="@div.DivisionID"
+               asp-route-activeConf="@Model.ActiveConf"
+               asp-route-activeDiv="@div.DivisionID"
                class="list-group-item
                         @Model.CheckActiveDiv(div.DivisionID)">
                     @div.Name
