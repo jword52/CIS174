@@ -18,10 +18,10 @@ namespace NFLTeamApp
                 options.LowercaseUrls = true;
                 options.AppendTrailingSlash = true;
             });
-            services.AddControllersWithViews();
-            services.AddDbContext<TeamContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("TeamContext")));
+            //services.AddControllersWithViews();
+            //services.AddDbContext<TeamContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("TeamContext")));
         }
         // Use this method to configure the HTTP request pipeline. 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
