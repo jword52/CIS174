@@ -1,5 +1,5 @@
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using NFLTeamApp.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,8 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Add EntityFrameWorkCore Dependacy Injection
+//builder.Services.AddDbContext<TeamContext>(options =>
+//     options.UseSqlServer(builder.Configuration.GetConnectionString("TeamContext")));
+
+builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TeamContext>(options =>
-     options.UseSqlServer(builder.Configuration.GetConnectionString("TeamContext")));
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("TeamContext")));
 
 var app = builder.Build();
 

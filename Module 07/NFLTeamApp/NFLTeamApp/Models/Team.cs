@@ -2,10 +2,10 @@
 {
     public class Team
     {
-        public string TeamID { get; set; } = String.Empty;
-        public string Name { get; set; } = String.Empty;
-        public Conference Conference { get; set; } = null!;
-        public Division Division { get; set; } = null!;
-        public string LogoImage { get; set; } = null!;
+        public string TeamID { get; set; } 
+        public string Name { get; set; }
+        public Conference Conference { get; set; } 
+        public Division Division { get; set; }
+        public string LogoImage { get; set; }
     }
 }
