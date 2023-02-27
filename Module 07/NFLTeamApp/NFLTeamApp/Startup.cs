@@ -18,10 +18,7 @@ namespace NFLTeamApp
                 options.LowercaseUrls = true;
                 options.AppendTrailingSlash = true;
             });
-            //services.AddControllersWithViews();
-            //services.AddDbContext<TeamContext>(options =>
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("TeamContext")));
+
         }
         // Use this method to configure the HTTP request pipeline. 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,16 +30,16 @@ namespace NFLTeamApp
 
             // configure middleware that runs after routing decisions have been made
 
-            app.UseEndpoints(endpoints => // map the endpoints 
-            {
-                endpoints.MapControllerRoute(
-                    name: "custom",
-                    pattern: "{controller}/{action}/conf/{activeConf}/div{activeDiv}");
+            //app.UseEndpoints(endpoints => // map the endpoints 
+            //{
+            //    endpoints.MapControllerRoute(
+            //        name: "custom",
+            //        pattern: "{controller}/{action}/conf/{activeConf}/div{activeDiv}");
 
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
+            //    endpoints.MapControllerRoute(
+            //        name: "default",
+            //        pattern: "{controller=Home}/{action=Index}/{id?}");
+            //});
         }
     }
 }
