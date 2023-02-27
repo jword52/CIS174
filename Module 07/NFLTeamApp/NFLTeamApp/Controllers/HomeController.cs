@@ -21,64 +21,53 @@ namespace NFLTeamApp.Controllers
                 Conferences = context.Conferences.ToList(),
                 Divisions = context.Divisions.ToList()
             };
-            //store selected conference and division IDs in the view bag
-            ViewBag.ActiveConf = activeConf;
-            ViewBag.ActiveDiv = activeDiv;
+            ////store conference and division IDs in viewbag
+            //ViewBag.ActiveConf = activeConf;
+            //ViewBag.ActiveDiv = activeDiv;
 
-            //get list of conferences and divisions from database
-            List<Conference> conferences= context.Conferences.ToList();
-            List<Division> divisions= context.Divisions.ToList();
-
-            //insert default "All" value at front of each list
-            conferences.Insert(0, new Conference { ConferenceID = "all", 
-                                                   Name = "All" });
-            divisions.Insert(0, new Division { DivisionID = "all", 
-                                               Name = "All" });
-
-            //store lists in view bag
-            ViewBag.Conferences = conferences;
-            ViewBag.Divisions = divisions;
+            //ViewBag.Conferences = context.Conferences.ToList();
+            //ViewBag.Divisions = context.Divisions.ToList();
 
             //get teams - filter by conference and division
             IQueryable<Team> query = context.Teams;
-            if (activeConf != "all")
-            
-                query = query.Where(
-                    t => t.Conference.ConferenceID.ToLower() == activeConf.ToLower());
-            if (activeDiv != "all")
-                query = query.Where(
-                    t => t.Division.DivisionID.ToLower() == activeDiv.ToLower());
-            //pass teams to view as model
+
+            if(activeConf != "all")
+                query = query.Where(t 
+                    => t.Conference.ConferenceID.ToLower() == 
+                    activeConf.ToLower());
+
+            if(activeDiv != "all")
+                query = query.Where(t => 
+                t.Division.DivisionID.ToLower() ==
+                activeDiv.ToLower());
+
+            //executes query
             model.Teams = query.ToList();
-                return View(model);
-            
+            return View(model);
         }
-        //public RedirectToActionResult Index() => RedirectToAction("List");
-        ////public RedirectToActionResult Index() => RedirectToAction("List", "Team");
-
-        //[HttpPost]
-        //public RedirectToActionResult Details(TeamListViewModel model)
-        //{
-        //    Utility.LogTeamClick(model.Teams.TeamID);
-        //    TempData["ActiveConf"] = model.ActiveConf;
-        //    TempData["ActiveDiv"] = model.ActiveDiv;
-        //    return RedirectToAction("Details", new { ID = model.Teams.TeamID });
-
-        //}
-        //[HttpGet]
-        //public ViewResult Details (string id)
-        //{
-        //    var model = new TeamListViewModel
-        //    {
-        //        Team = context.Teams
-        //        .Include(t => t.Conference)
-        //        .Include(t => t.Division)
-        //        .FirstOrDefault(t => t.TeamID == id),
-        //        ActiveConf = TempData.Peek("ActiveConf").ToString(),
-        //        ActiveDiv = TempData.Peek("ActiveDiv").ToString()
-
-        //    };
-        //    return View(model);
-        //}
+        [HttpPost]
+        public RedirectToActionResult Details(TeamViewModel model)
+        {
+            //Utility.LogTeamClick(model.Team.TeamID);
+            TempData["ActiveConf"] = model.ActiveConf;
+            TempData["ActiveDiv"] = model.ActiveDiv;
+            return RedirectToAction("Details",
+                        new { ID = model.Team.TeamID });
+        }
+        [HttpGet]
+        public ViewResult Details(string id)
+        {
+            var model = new TeamViewModel
+            {
+                Team = context.Teams
+                .Include(t => t.Conference)
+                .Include(t => t.Division)
+                .FirstOrDefault(t => t.TeamID == id),
+                ActiveConf = TempData?["ActiveConf"]?.ToString() ?? "all",
+                ActiveDiv = TempData?["ActiveDiv"]?.ToString() ?? "all"
+            };
+            return View(model);
+        }
     }
-}
+    }
+

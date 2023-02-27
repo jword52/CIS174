@@ -1,20 +1,38 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <link href="~/lib/bootstrap/dist/css/bootstram.min.css" rel="stylesheet" />
-    <link href="~/css/site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstram.min.css"  />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NFLTeamApp.styles.css" asp-append-version="true" />
+    
+    
 </head>
 <body>
+    
     <div class="container">
         <header class="text-center text-white">
-            <h1 class="bg-primary mt-3 p-3">NFL Teams"</h1>
+            <h1 class="bg-primary mt-3 p-3">NFL Teams</h1>
+            
         </header>
-        <main>@RenderBody()
+        @if (TempData.Keys.Contains("message"))
+        {
+            <h4 class="bg-info text-center text-white p2">
+                @TempData["message"]
+            </h4>
+        }
+        <main>
+            @RenderBody()
         </main>
         
     </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

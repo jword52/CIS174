@@ -5,11 +5,12 @@ namespace NFLTeamApp.Models
 {
     public class TeamContext : DbContext
     {
-        public TeamContext(DbContextOptions<TeamContext> options) : base(options) { }
+        public TeamContext(DbContextOptions<TeamContext> options) 
+            : base(options) { }
 
-        public DbSet<Team> Teams { get; set;}
-        public DbSet<Conference> Conferences { get; set;}
-        public DbSet<Division> Divisions { get; set;}
+        public DbSet<Team> Teams { get; set; } = null!;
+        public DbSet<Conference> Conferences { get; set;} = null!;
+        public DbSet<Division> Divisions { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

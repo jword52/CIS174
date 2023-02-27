@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
+using NFLTeamApp.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add EntityFrameWorkCore Dependacy Injection
+builder.Services.AddDbContext<TeamContext>(options =>
+     options.UseSqlServer(builder.Configuration.GetConnectionString("TeamContext")));
 
 var app = builder.Build();
 
@@ -20,6 +28,10 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllerRoute(
+    name: "custom",
+    pattern: "{controller}/{action}/conf-{activeConf}/div-{activeDiv}"
+    );
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
