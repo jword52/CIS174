@@ -1,5 +1,5 @@
-﻿using OlympicGames.Models;
-//using OlympicGamesWebApp.Models;
+﻿
+
 
 namespace OlympicGames.Models
 {

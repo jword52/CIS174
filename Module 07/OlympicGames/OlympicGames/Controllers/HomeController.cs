@@ -24,23 +24,18 @@ namespace OlympicGames.Controllers
                 Sports = context.Sports.ToList(),
                 Locations = context.Locations.ToList(),
             };
-            //ViewBag.activeGame = activeGame;
-            //ViewBag.activeSport = activeSport;
-            //ViewBag.activeLocation = activeLocation;
-
-            //List<Game> games = context.Games.ToList();
-            //List<Sport> sports= context.Sports.ToList();
-            //List<Location> locations = context.Locations.ToList();
+     
 
             IQueryable<Country> query = context.Countries;
 
             if (activeGame != "all")
-                query = query.Where(t => t.Game.GameID.ToLower() == activeGame.ToLower());
+                query = query.Where(g => g.Game.GameID.ToLower() == activeGame.ToLower());
 
             if (activeSport != "all")
-                query = query.Where(t => t.Sport.SportID.ToLower() == activeSport.ToLower());
+                query = query.Where(s => s.Sport.SportID.ToLower() == activeSport.ToLower());
+
             if (activeLocation != "all")
-                query = query.Where(t => t.Location.LocationID.ToLower() == activeLocation.ToLower());
+                query = query.Where(l => l.Location.LocationID.ToLower() == activeLocation.ToLower());
 
             model.Countries = query.ToList();
             return View(model);
