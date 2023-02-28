@@ -1,0 +1,76 @@
+﻿@model CountryListViewModel
+
+@{
+    ViewData["Title"] = "Olympic Countries";
+}
+
+<!DOCTYPE html>
+<html>
+<div class="row">
+    <div class="col-md-3">
+        <h3>Olympic Games</h3>
+        <div class="list-group">
+            @foreach (Game game in Model.Games)
+            {
+                <a asp-action="Index"
+               asp-route-activeGame="@game.GameID"
+               asp-route-activeSport="@Model.ActiveSport"
+               asp-route-activeLocation="@Model.ActiveLocation"
+               class="list-group-item @Model.CheckActiveGame(game.GameID)">
+                    @game.GameName
+                </a>
+            }
+            <h3>Olympic Sport</h3>
+            <div class="list-group">
+                @foreach (Sport sport in Model.Sports)
+                {
+                    <a asp-action="Index"
+                   asp-route-activeSport="@sport.SportID"
+                   asp-route-activeGame="@Model.ActiveGame"
+                   asp-route-activeLocation="@Model.ActiveLocation"
+                   class="list-group-item @Model.CheckActiveSport(sport.SportID)">
+                        @sport.SportName
+                    </a>
+                }
+                <h3>Olympic Locations</h3>
+                <div class="list-group">
+                    @foreach (Location location in Model.Locations)
+                    {
+                        <a asp-action="Index"
+                       asp-route-activeLocation="@location.LocationID"
+                       asp-route-activeGame="@Model.ActiveGame"
+                       asp-route-actionSport="@Model.ActiveSport"
+                       class="list-group-item @Model.CheckActiveLocation(location.LocationID)">
+                            @location.LocationName
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <ul class="list-inline">
+                @foreach (Country country in Model.Countries)
+                {
+                    <li class="list-group-item">
+                        <form asp-action="Details" method="=post">
+                            <button class="bg-white border-0"
+                                type="submit">
+                                <img src="~/images/@country.FlagImg"
+                                 alt="@country.CountryName"
+                                 title="@country.CountryName |
+                                     @country.Game.GameName
+                                     @country.Sport.SportName
+                                     @country.Location.LocationName" />
+                            </button>
+                            <input type="hidden" asp-for="@country.CountryID" />
+                            <input type="hidden" asp-for="ActiveGame" />
+                            <input type="hidden" asp-for="ActiveSport" />
+                            <input type="hidden" asp-for="ActiveLocation" />
+                        </form>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+</html>
