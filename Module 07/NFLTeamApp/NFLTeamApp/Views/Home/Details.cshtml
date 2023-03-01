@@ -2,14 +2,14 @@
 @{
     ViewData["Title"] = "Team Details";
 }
-
+<!DOCTYPE html>
 <h2>Team Details</h2>
-
-<div class=""row>
+<html>
+<div class="row">
     <div class="col-sm-6 col-sm-offset-3">
         <ul class="list-group text-center">
             <li class="list-group-item">
-                <img src="~/image/@Model.Team.LogoImage" alt="" />
+                <img src="~/images/@Model.Team.LogoImage" alt="" />
                 <h3>@Model.Team.Name</h3>
             </li>
             <li class="list-group-item">
@@ -29,3 +29,4 @@
         </ul>
     </div>
 </div>
+</html>

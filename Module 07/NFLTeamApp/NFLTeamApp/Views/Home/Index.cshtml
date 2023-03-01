@@ -1,13 +1,15 @@
 ﻿@model TeamListViewModel
 @{
+
+
     ViewData["Title"] = "NFL Teams";
     string Active(string filter, string selected)
     {
         return (filter.ToLower() == selected.ToLower() ? "active" : "");
     }
 }
-
-
+<!DOCTYPE html>
+<html>
 <div class="row">
     <div class="col-md-3">
         <h3>Conference</h3>
@@ -67,3 +69,4 @@
     </div>
 
 </div>
+</html>
