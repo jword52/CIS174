@@ -1,7 +1,7 @@
 ﻿@model CountryListViewModel
 
 @{
-    ViewData["Title"] = "Olympic's";
+    ViewData["Title"] = "Olympics";
     string Active(string filter, string selected)
     {
         return (filter.ToLower() == selected.ToLower() ? "active" : "");
@@ -12,7 +12,7 @@
 <html>
 <div class="row">
     <div class="col-md-3">
-        <h3>Olympic's</h3>
+        <h3>Olympics</h3>
         <div class="list-group">
             @foreach (Game game in Model.Games)
             {
@@ -24,6 +24,7 @@
                     @game.GameName
                 </a>
             }
+        </div>
             <h3>Olympic Sport</h3>
             <div class="list-group">
                 @foreach (Sport sport in Model.Sports)
@@ -36,6 +37,7 @@
                         @sport.SportName
                     </a>
                 }
+            </div>
                 <h3>Olympic Locations</h3>
                 <div class="list-group">
                     @foreach (Location location in Model.Locations)
@@ -49,13 +51,13 @@
                         </a>
                     }
                 </div>
-            </div>
-        </div>
+            
+    </div>
         <div class="col-md-9">
             <ul class="list-inline">
                 @foreach (Country country in Model.Countries)
                 {
-                    <li class="list-group-item">
+                    <li class="list-inline-item">
                         <form asp-action="Details" method="post">
                             <button class="bg-white border-0"
                                 type="submit">
@@ -75,6 +77,7 @@
                 }
             </ul>
         </div>
-    </div>
-    </div>
+    
+</div>
+
 </html>
