@@ -1,19 +1,42 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using NFLTeamApp.Models;
+using Microsoft.AspNetCore.Http;
+
 
 namespace NFLTeamApp.Controllers
 {
     public class HomeController : Controller
     {
         private TeamContext context;
+
         public HomeController(TeamContext ctx)
         {
             context = ctx;
         }
-        public ViewResult Index(string activeConf = "all", string activeDiv = "all")
+
+        public IActionResult Index(string activeConf = "all", string activeDiv = "all")
         {
+            var session = new NFLSession(HttpContext.Session);
+            session.SetActiveConf(activeConf);
+            session.SetActiveDiv(activeDiv);
+
+            // if no count value in session, use data in cookie to restore fave teams in session 
+            int? count = session.GetMyTeamCount();
+            if (count == null)
+            {
+                var cookies = new NFLCookies(Request.Cookies);
+                string[] ids = cookies.GetMyTeamIds();
+
+                List<Team> myteams = new List<Team>();
+                if (ids.Length > 0)
+                    myteams = context.Teams.Include(t => t.Conference)
+                        .Include(t => t.Division)
+                        .Where(t => ids.Contains(t.TeamID)).ToList();
+                session.SetMyTeams(myteams);
+            }
+
             var model = new TeamListViewModel
             {
                 ActiveConf = activeConf,
@@ -21,53 +44,59 @@ namespace NFLTeamApp.Controllers
                 Conferences = context.Conferences.ToList(),
                 Divisions = context.Divisions.ToList()
             };
-            ////store conference and division IDs in viewbag
-            //ViewBag.ActiveConf = activeConf;
-            //ViewBag.ActiveDiv = activeDiv;
 
-            //ViewBag.Conferences = context.Conferences.ToList();
-            //ViewBag.Divisions = context.Divisions.ToList();
-
-            //get teams - filter by conference and division
             IQueryable<Team> query = context.Teams;
-
-            if(activeConf != "all")
-                query = query.Where(t 
-                    => t.Conference.ConferenceID.ToLower() == 
-                    activeConf.ToLower());
-
-            if(activeDiv != "all")
-                query = query.Where(t => 
-                t.Division.DivisionID.ToLower() ==
-                activeDiv.ToLower());
-
-            //executes query
+            if (activeConf != "all")
+                query = query.Where(
+                    t => t.Conference.ConferenceID.ToLower() == activeConf.ToLower());
+            if (activeDiv != "all")
+                query = query.Where(
+                    t => t.Division.DivisionID.ToLower() == activeDiv.ToLower());
             model.Teams = query.ToList();
+
             return View(model);
         }
-        [HttpPost]
-        public RedirectToActionResult Details(TeamViewModel model)
+
+        public IActionResult Details(string id)
         {
-            //Utility.LogTeamClick(model.Team.TeamID);
-            TempData["ActiveConf"] = model.ActiveConf;
-            TempData["ActiveDiv"] = model.ActiveDiv;
-            return RedirectToAction("Details",
-                        new { ID = model.Team.TeamID });
-        }
-        [HttpGet]
-        public ViewResult Details(string id)
-        {
+            var session = new NFLSession(HttpContext.Session);
             var model = new TeamViewModel
             {
                 Team = context.Teams
-                .Include(t => t.Conference)
-                .Include(t => t.Division)
-                .FirstOrDefault(t => t.TeamID == id),
-                ActiveConf = TempData?["ActiveConf"]?.ToString() ?? "all",
-                ActiveDiv = TempData?["ActiveDiv"]?.ToString() ?? "all"
+                    .Include(t => t.Conference)
+                    .Include(t => t.Division)
+                    .FirstOrDefault(t => t.TeamID == id),
+                ActiveDiv = session.GetActiveDiv(),
+                ActiveConf = session.GetActiveConf()
             };
             return View(model);
         }
-    }
-    }
 
+        [HttpPost]
+        public RedirectToActionResult Add(TeamViewModel data)
+        {
+            data.Team = context.Teams
+                .Include(t => t.Conference)
+                .Include(t => t.Division)
+                .Where(t => t.TeamID == data.Team.TeamID)
+                .FirstOrDefault();
+
+            var session = new NFLSession(HttpContext.Session);
+            var teams = session.GetMyTeams();
+            teams.Add(data.Team);
+            session.SetMyTeams(teams);
+
+            var cookies = new NFLCookies(Response.Cookies);
+            cookies.SetMyTeamIds(teams);
+
+            TempData["message"] = $"{data.Team.Name} added to your favorites";
+
+            return RedirectToAction("Index",
+                new
+                {
+                    ActiveConf = session.GetActiveConf(),
+                    ActiveDiv = session.GetActiveDiv()
+                });
+        }
+    }
+}
