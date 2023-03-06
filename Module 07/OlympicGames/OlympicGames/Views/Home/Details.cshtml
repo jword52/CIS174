@@ -3,9 +3,7 @@
     ViewData["Title"] = "Country Details";
 }
 
-<!DOCTYPE html>
-
-<h2>Country Details</h2>
+<h2 class="text-center">Country Details</h2>
 
 <html>
 <div class="row">
@@ -25,12 +23,18 @@
                 <h4>Location: @Model.Country.Location.LocationName</h4>
             </li>
             <li class="list-group-item">
-                <a asp-action="Index"
+                <form asp-action="Add" method="post">
+                <a asp-action="Index" class="btn btn-primary"
                 asp-route-game="@Model.ActiveGame"
                 asp-route-sport="@Model.ActiveSport"
                 asp-route-type="@Model.ActiveLocation">
                 Return to Home page
             </a>
+            <button type="submit" class="btn btn-primary">
+                Add to Favorites
+            </button>
+            <input type="hidden" asp-for="Country.CountryID" />
+                </form>
             </li>
         </ul>
     </div>

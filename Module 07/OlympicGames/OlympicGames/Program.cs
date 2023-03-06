@@ -1,40 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using OlympicGames.Models;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Hosting;
+using OlympicGames;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace OlympicGames
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<CountryContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("CountryContext")));
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
 }
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "custom",
-    pattern: "{controller}/{action}/game-{activeGame}/sport-{activeSport}"
-    );
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();

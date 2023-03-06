@@ -12,9 +12,32 @@ namespace OlympicGames.Controllers
         {
             context = ctx;
         }
-        public ViewResult Index(string activeGame = "all", string activeSport = "all", string activeLocation = "all")
+        public IActionResult Index(string activeGame = "all", string activeSport = "all", string activeLocation = "all")
 
         {
+
+            var session = new OlympicSession(HttpContext.Session);
+            session.SetActiveGame(activeGame);
+            session.SetActiveSport(activeSport);
+            session.SetActiveLocation(activeLocation);
+
+            // if no count value in session, use data in cookie to restore fave countries in session 
+            int? count = session.GetMyCountryCount();
+            if (count == null)
+            {
+                var cookies = new OlympicCookies(Request.Cookies);
+                string[] ids = cookies.GetMyCountryIds();
+
+                List<Country> mycountries = new List<Country>();
+                if (ids.Length > 0)
+                    mycountries = context.Countries.Include(g => g.Game)
+                        .Include(s => s.Sport)
+                        .Include(l => l.Location)
+                        .Where(t => ids.Contains(t.CountryID)).ToList();
+                session.SetMyCountries(mycountries);
+            }
+
+
             var model = new CountryListViewModel
             {
                 ActiveGame = activeGame,
@@ -40,30 +63,57 @@ namespace OlympicGames.Controllers
             model.Countries = query.ToList();
             return View(model);
         }
-        [HttpPost]
-        public RedirectToActionResult Details(CountryViewModel model)
+
+        public IActionResult Details(string id)
         {
-            TempData["ActiveGame"] = model.ActiveGame;
-            TempData["ActiveSport"] = model.ActiveSport;
-            TempData["ActiveLocation"] = model.ActiveLocation;
-            return RedirectToAction("Details", new { ID = model.Country.CountryID });
-        }
-        [HttpGet]
-        public ViewResult Details(string id)
-        {
+            var session = new OlympicSession(HttpContext.Session);
             var model = new CountryViewModel
             {
                 Country = context.Countries
                 .Include(g => g.Game)
-                .Include (s => s.Sport)
-                .Include(t => t.Location)
+                .Include(s => s.Sport)
+                .Include(l => l.Location)
                 .FirstOrDefault(c => c.CountryID == id),
-                ActiveGame = TempData?["ActiveGame"]?.ToString() ?? "all",
-                ActiveSport = TempData?["ActiveSport"]?.ToString() ?? "all",
-                ActiveLocation = TempData?["ActiveLocation"]?.ToString() ?? "all"
+                ActiveGame = session.GetActiveGame(),
+                ActiveSport = session.GetActiveSport(),
+                ActiveLocation = session.GetActiveLocation(),
             };
             return View(model);
         }
+
+        [HttpPost]
+        public RedirectToActionResult Add(CountryViewModel data)
+        {
+
+        data.Country = context.Countries
+            .Include(g => g.Game)
+            .Include(s => s.Sport)
+            .Include(l => l.Location)
+            .Where(t => t.CountryID == data.Country.CountryID)
+            .FirstOrDefault();
+
+        var session = new OlympicSession(HttpContext.Session);
+        var countries = session.GetMyCountries();
+        countries.Add(data.Country);
+        session.SetMyCountries(countries);
+
+            var cookies = new OlympicCookies(Response.Cookies);
+            cookies.SetMyCountryIds(countries);
+
+            TempData["message"] = $"{data.Country.CountryName} added to your faorites";
+
+        return RedirectToAction("Index",
+            new
+            {
+                ActiveGame = session.GetActiveGame(),
+                ActiveSport = session.GetActiveSport(),
+                ActiveLocation = session.GetActiveLocation(),
+            });
+
+
+        }
+      
+        
 
     }
 }

@@ -6,32 +6,49 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width", initial-scale="1.0" />
-    <title>@ViewBag.Title Olympics</title>
+    <meta name="viewport" content="width=device-width" , initial-scale="1.0" />
+
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/site.css" asp-append-version="true" rel="stylesheet" />
-    <link href="~/OlympicGames.styles.css" asp-append-version="true" rel="stylesheet" />
+    <link href="~/NFLTeamApp.styles.css" asp-append-version="true" rel="stylesheet" />
+    <title> @ViewBag.Title</title>
 </head>
 <body>
     <div class="container">
         <header class="text-center text-white">
             <h1 class="bg-primary mt-3 p-3">Olympic Games</h1>
-        </header>
-        @if (TempData.Keys.Contains("message"))
+        
+        @if (TempData["message"] != null)
         {
-            <h4 class="bg-info text-center text-white p2">
+            <h4 class="bg-success p-2">@TempData["message"]
                 @TempData["message"]
             </h4>
         }
+
+            @* show link to Favorites page unless on Favorites page *@
+            @if (!ViewContext.View.Path.Contains("Favorites"))
+            {
+                var session = new OlympicSession(Context.Session);
+                <h5 class="bg-info p-2">
+                    <a asp-controller="Favorites"
+                   asp-action="Index"
+                   class="text-white">My Favorite Teams</a>
+                    @* get number of Favorite teams from session and display in badge *@
+                    <span class="badge badge-light">
+                        @(session.GetMyCountryCount())
+                    </span>
+               </h5>
+            }
+        </header>
         <main>
             @RenderBody()
         </main>
     </div>
 
     
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false)*@
 </body>
 </html>
