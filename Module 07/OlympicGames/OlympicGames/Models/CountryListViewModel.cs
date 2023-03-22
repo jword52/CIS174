@@ -6,9 +6,28 @@ namespace OlympicGames.Models
     public class CountryListViewModel : CountryViewModel
     {
         public List<Country> Countries { get; set; }
-        public string ActiveSport { get; set; }
-        public string ActiveGame { get; set; }
-        public string ActiveLocation { get; set; }
+        public string ActiveSport { get; set; } = "all";
+        public string ActiveGame { get; set; } = "all";
+        public string ActiveLocation { get; set; } = "all";
+
+
+        private List<Game> games;
+        public List<Game> Games
+        {
+            get => games;
+            set
+            {
+                games = new List<Game>
+                {
+
+                    new Game
+                    {
+                        GameID = "all",
+                        GameName = "All"
+                    }};
+                games.AddRange(value);
+            }
+        }
 
         private List<Sport> sports;
         public List<Sport> Sports
@@ -16,44 +35,30 @@ namespace OlympicGames.Models
             get => sports;
             set
             {
-                sports = value;
-                sports.Insert(0,
+                sports = new List<Sport>
+                {
                     new Sport
                     {
                         SportID = "all",
                         SportName = "All"
-                    });
+                    }};
+                sports.AddRange(value);
             }
 
         }
-        private List<Game> games;
-        public List<Game> Games
-        {
-            get => games;
-            set
-            {
-                games = value;
-                games.Insert(0,
-                    new Game
-                    {
-                        GameID = "all",
-                        GameName = "All"
-                    });
-            }
-        }
+        
         private List<Location> locations;
         public List<Location> Locations
         {
             get => locations;
             set
             {
-                locations = value;
-                locations.Insert(0,
-                    new Location
+                locations = new List<Location>
+                {                    new Location
                     {
                         LocationID = "all",
                         LocationName = "All"
-                    });
+                    }};
             }
         }
         public string CheckActiveSport(string s) =>

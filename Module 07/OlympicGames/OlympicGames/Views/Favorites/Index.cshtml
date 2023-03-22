@@ -3,21 +3,7 @@
     ViewData["Title"] = "Favorites";
 }
 
-<div class="text-center">
-    <h2>My Favorites</h2>
-    <form asp-action="Delete" method="post">
-        <a asp-action="Index" asp-controller="Home" class="btn btn-primary"
-           asp-route-activeConf="@Model.ActiveGame"
-           asp-route-activeDiv="@Model.ActiveSport"
-            asp-route-activeDiv="@Model.ActiveLocation">
-            Back to Home Page
-        </a>
-        <button type="submit" class="btn btn-primary">
-            Clear Favorites
-        </button>
-    </form>
-    <br />
-</div>
+
 
 
 <div class="row">
@@ -28,11 +14,14 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-sm-4">
+                           
                             <img src="~/images/@country.FlagImg" alt="" />
                         </div>
+                        
                         <div class="col-sm-4">
                             @country.CountryName
                         </div>
+                        
                         <div class="col-sm-4">
                             @country.Game.GameName @country.Sport.SportName @country.Location.LocationName
                         </div>
@@ -41,4 +30,19 @@
             }
         </ul>
     </div>
+</div>
+<div class="text-center">
+    <h2>My Favorites</h2>
+    <form asp-action="Delete" method="post">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-primary"
+           asp-route-activeConf="@Model.ActiveGame"
+           asp-route-activeDiv="@Model.ActiveSport"
+           asp-route-activeDiv="@Model.ActiveLocation">
+            Back to Home Page
+        </a>
+        <button type="submit" class="btn btn-primary">
+            Clear Favorites
+        </button>
+    </form>
+    <br />
 </div>

@@ -52,6 +52,10 @@ namespace OlympicGames
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "custon",
+                    pattern: "{controller=Home}/{action=Inex}/game/{activeGame}/sport/{activeSport}/location/{activeLocation}");
             });
         }
     }

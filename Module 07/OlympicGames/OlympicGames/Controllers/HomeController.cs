@@ -12,14 +12,16 @@ namespace OlympicGames.Controllers
         {
             context = ctx;
         }
-        public IActionResult Index(string activeGame = "all", string activeSport = "all", string activeLocation = "all")
-
+        public IActionResult Index(CountryListViewModel model)
         {
+            model.Games = context.Games.ToList();
+            model.Sports = context.Sports.ToList();
+            model.Locations = context.Locations.ToList();
 
             var session = new OlympicSession(HttpContext.Session);
-            session.SetActiveGame(activeGame);
-            session.SetActiveSport(activeSport);
-            session.SetActiveLocation(activeLocation);
+            session.SetActiveGame(model.ActiveGame);
+            session.SetActiveSport(model.ActiveSport);
+            session.SetActiveLocation(model.ActiveLocation);
 
             // if no count value in session, use data in cookie to restore fave countries in session 
             int? count = session.GetMyCountryCount();
@@ -38,27 +40,27 @@ namespace OlympicGames.Controllers
             }
 
 
-            var model = new CountryListViewModel
-            {
-                ActiveGame = activeGame,
-                ActiveSport = activeSport,
-                ActiveLocation = activeLocation,
-                Games = context.Games.ToList(),
-                Sports = context.Sports.ToList(),
-                Locations = context.Locations.ToList(),
-            };
+            //var model = new CountryListViewModel
+            //{
+            //    ActiveGame = activeGame,
+            //    ActiveSport = activeSport,
+            //    ActiveLocation = activeLocation,
+            //    Games = context.Games.ToList(),
+            //    Sports = context.Sports.ToList(),
+            //    Locations = context.Locations.ToList(),
+            //};
      
 
             IQueryable<Country> query = context.Countries;
 
-            if (activeGame != "all")
-                query = query.Where(g => g.Game.GameID.ToLower() == activeGame.ToLower());
+            if (model.ActiveGame != "all")
+                query = query.Where(g => g.Game.GameID.ToLower() == model.ActiveGame.ToLower());
 
-            if (activeSport != "all")
-                query = query.Where(s => s.Sport.SportID.ToLower() == activeSport.ToLower());
+            if (model.ActiveSport != "all")
+                query = query.Where(s => s.Sport.SportID.ToLower() == model.ActiveSport.ToLower());
 
-            if (activeLocation != "all")
-                query = query.Where(l => l.Location.LocationID.ToLower() == activeLocation.ToLower());
+            if (model.ActiveLocation != "all")
+                query = query.Where(l => l.Location.LocationID.ToLower() == model.ActiveLocation.ToLower());
 
             model.Countries = query.ToList();
             return View(model);
