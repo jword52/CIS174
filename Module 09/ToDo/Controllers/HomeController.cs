@@ -15,6 +15,7 @@ namespace ToDoApp.Controllers
         private TicketContext context;
         public HomeController(TicketContext ctx) => context = ctx;
 
+
         // GET: HomeController
         public IActionResult Index(string id)
         {
@@ -39,8 +40,8 @@ namespace ToDoApp.Controllers
             {
                 query = query.Where(t => t.Points <= filters.MaxPoints);
             }
-            if (filters.HasStatus) 
-            { 
+            if (filters.HasStatus)
+            {
                 query = query.Where(t => t.StatusId == filters.StatusId);
             }
             if (filters.HasDue)
@@ -85,28 +86,28 @@ namespace ToDoApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Add(Ticket task)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 task.Sprint = context.Sprints.First(s => s.SprintId == task.SprintId);
                 task.Status = context.Statuses.First(s => s.StatusId == task.StatusId);
-                if(task.SprintId == -1)
+                if (task.SprintId == -1)
                 {
                     task.Sprint.DueDate = DateTime.Today.AddDays(7);
                 }
-                
-           
-                    context.Tickets.Add(task);
-                    context.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "There are errors in the form.");
-                    ViewBag.Sprints = context.Sprints.ToList();
-                    ViewBag.Statuses = context.Statuses.ToList();
-                    ViewBag.Points = Ticket.PossPoints;
-                    return View(task);
-                }
+
+
+                context.Tickets.Add(task);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "There are errors in the form.");
+                ViewBag.Sprints = context.Sprints.ToList();
+                ViewBag.Statuses = context.Statuses.ToList();
+                ViewBag.Points = Ticket.PossPoints;
+                return View(task);
+            }
         }
 
         [HttpPost]
@@ -118,9 +119,9 @@ namespace ToDoApp.Controllers
 
         // POST: HomeController/Edit/5
         [HttpPost]
-        public ActionResult Edit([FromQuery] string id, Ticket selected)
+        public ActionResult Edit([FromRoute] string id, Ticket selected)
         {
-            if(selected.StatusId == null)
+            if (selected.StatusId == null)
             {
                 context.Tickets.Remove(selected);
             }

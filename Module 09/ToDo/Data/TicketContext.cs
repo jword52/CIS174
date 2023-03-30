@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToDoApp.Models;
+using ToDoApp.Data;
 namespace ToDoApp.Data
 {
     public class TicketContext : DbContext
@@ -13,6 +15,9 @@ namespace ToDoApp.Data
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Sprint> Sprints { get; set; }
         public DbSet<Status> Statuses { get; set; }
+        public DbSet<User> Users { get; set; }
+        
+     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,5 +57,8 @@ namespace ToDoApp.Data
                     });
             }
         }
+
+       
     }
 }
+

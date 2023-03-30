@@ -13,12 +13,22 @@
 </head>
 <body>
     <div class="container">
-    <header class="bg-primary text-white text-center">
-        <h1 class="m-3 p-3">My Tasks</h1>
-    </header>
-    <main>
-        @RenderBody()
-    </main>
-</div>
+        <header class="bg-primary text-white text-center">
+            <h1 class="m-3 p-3">Please continue to register</h1>
+            @if (TempData["message"] != null)
+            {
+                <h4 class="bg-success p-2">
+                    @TempData["message"]
+                    @TempData["message"]
+                </h4>
+            }
+
+            
+        </header>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)"
 </body>
 </html>

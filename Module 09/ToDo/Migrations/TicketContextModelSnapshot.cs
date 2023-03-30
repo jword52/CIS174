@@ -178,7 +178,7 @@ namespace ToDoApp.Migrations
                             Id = 1,
                             Description = "Job Number 1",
                             Name = "Ticket 1",
-                            Points = 7,
+                            Points = 9,
                             SprintId = 1,
                             StatusId = "todo"
                         },
@@ -205,7 +205,7 @@ namespace ToDoApp.Migrations
                             Id = 4,
                             Description = "Job Number 4",
                             Name = "Ticket 4",
-                            Points = 2,
+                            Points = 3,
                             SprintId = 2,
                             StatusId = "inprog"
                         },
@@ -214,7 +214,7 @@ namespace ToDoApp.Migrations
                             Id = 5,
                             Description = "Job Number 5",
                             Name = "Ticket 5",
-                            Points = 3,
+                            Points = 10,
                             SprintId = 3,
                             StatusId = "todo"
                         },
@@ -223,7 +223,7 @@ namespace ToDoApp.Migrations
                             Id = 6,
                             Description = "Job Number 6",
                             Name = "Ticket 6",
-                            Points = 7,
+                            Points = 6,
                             SprintId = 3,
                             StatusId = "inprog"
                         },
@@ -232,7 +232,7 @@ namespace ToDoApp.Migrations
                             Id = 7,
                             Description = "Job Number 7",
                             Name = "Ticket 7",
-                            Points = 5,
+                            Points = 1,
                             SprintId = 4,
                             StatusId = "todo"
                         },
@@ -241,7 +241,7 @@ namespace ToDoApp.Migrations
                             Id = 8,
                             Description = "Job Number 8",
                             Name = "Ticket 8",
-                            Points = 5,
+                            Points = 2,
                             SprintId = 4,
                             StatusId = "inprog"
                         },
@@ -250,7 +250,7 @@ namespace ToDoApp.Migrations
                             Id = 9,
                             Description = "Job Number 9",
                             Name = "Ticket 9",
-                            Points = 5,
+                            Points = 8,
                             SprintId = 5,
                             StatusId = "todo"
                         },
@@ -259,10 +259,35 @@ namespace ToDoApp.Migrations
                             Id = 10,
                             Description = "Job Number 10",
                             Name = "Ticket 10",
-                            Points = 6,
+                            Points = 10,
                             SprintId = 5,
                             StatusId = "inprog"
                         });
+                });
+
+            modelBuilder.Entity("ToDoApp.Models.User", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ToDoApp.Models.Ticket", b =>
