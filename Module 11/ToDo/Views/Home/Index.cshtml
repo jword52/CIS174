@@ -1,5 +1,4 @@
 ﻿@using ToDoApp.Models
-@using ToDoApp.Data
 @model IEnumerable<Ticket>
 @{
     string Overdue(Ticket task) => task.Overdue ? "bg-warning" : "";
@@ -70,48 +69,41 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Ticket task in Model)
+               @foreach(Ticket task in Model)
                 {
                     string overdue = Overdue(task);
-                    <tr>
-                        <td>@task.Name</td>
-                        <td>@task.Description</td>
-                        <td>@task.Points</td>
-                        <td class="@overdue">
-                            @task.Sprint.Name
-                            (@(((DateTime)task.Sprint.DueDate).ToShortDateString()))
-                        </td>
-                        <td class="@overdue">
-                            <!--(A)task.Status.Name-->
-                            <form asp-action="Edit" method="post"
+                <tr>
+                    <td>@task.Name</td>
+                    <td>@task.Description</td>
+                    <td>@task.Points</td>
+                    <td class="@overdue">
+                        @task.Sprint.Name
+                        (@(((DateTime)task.Sprint.DueDate).ToShortDateString()))
+                    </td>
+                    <td class="@overdue">
+                        <!--(A)task.Status.Name-->
+                        <form asp-action="Edit" method="post"
                               asp-route-id="@ViewBag.Filters.FilterString"
                               class="mr-2">
-                                <input type="hidden" name="@nameof(Ticket.Id)" value="@task.Id" />
-
-                                <select type="submit"
+                            <input type="hidden" name="@nameof(Ticket.Id)" value="@task.Id" />
+                            <select type="submit"
                                     name="@nameof(Ticket.StatusId)"
                                     asp-items="@(new SelectList(ViewBag.Statuses, "StatusId",
                                             "Name", task.StatusId))"
                                     class="form-control-sm">
-                                    <!--<option disabled selected>---Choose Status---</option>-->
-
-                                    <button type="submit" class="btn btn-primary btn-sm">Change Status</button>
-                                </select>
-                                <button type="submit" class="btn btn-primary btn-sm">Change Status</button>
-                                
-
-                            </form>
-                            
-                        </td>
+                                <!--<option disabled selected>---Choose Status---</option>-->
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm">Change Status</button>
+                        </form>
+                    </td>
+                    <td>
+                        <button type="submit" asp-action="Edit" formmethod="post"
+                                    class="btn btn-primary btn-sm">
+                                Delete
+                            </button>
                         
-                        <td>
-
-
-                            <button type="submit" class="btn btn-primary btn-sm">Delete</button>
-                            
-
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
