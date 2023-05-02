@@ -1,0 +1,14 @@
+﻿@model Comic
+@{
+    ViewBag.Title = "Delete Comic";
+}
+
+<h2>Delete Comic?</h2>
+<p style="color:red;">Are you sure you want to delete this comic?</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ComicId" />
+
+    <button type="submit" class="btn btn-primary">Delete</button>
+    <a asp-controller="Comic" asp-action="View" asp-route-id="@Model.ComicId" class="btn btn-primary">Cancel</a>
+</form>

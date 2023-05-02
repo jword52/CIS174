@@ -1,0 +1,31 @@
+﻿@model Comic
+@{
+    ViewData["Title"] = "View Comic";
+}
+
+<h2>View Comic</h2>
+
+<table class="table table-boardered table-striped">
+    <thead>
+        <tr>
+            <th>Comic Id</th>
+            <th>Title</th>
+            <th>Rating</th>
+            <th>Total Reviews</th>
+            <th> </th>
+            <th> </th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.ComicId</td>
+            <td>@Model.Title</td>
+            <td>@Model.Rating</td>
+            <td>@Model.TotalReviews</td>
+            <td><a asp-controller="Comic" asp-action="Edit" asp-route-id="@Model.ComicId">Edit Comic</a></td>
+            <td><a asp-controller="Comic" asp-action="Delete" asp-route-id="@Model.ComicId">Delete Comic</a></td>
+            <td><a asp-controller="Home" asp-action="Index">Return to Home</a></td>
+        </tr>
+    </tbody>
+</table>
