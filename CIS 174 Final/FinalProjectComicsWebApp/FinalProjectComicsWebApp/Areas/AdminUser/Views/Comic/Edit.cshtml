@@ -22,5 +22,5 @@ else
     <input type="hidden" asp-for="ComicId" />
 
     <button type="submit" class="btn btn-primary">Confirm</button>
-    <a asp-controller="Comic" asp-action="View" asp-route-id="@Model.ComicId" class="btn btn-primary">Cancel</a>
+    <a asp-action="View" asp-controller="Comic" asp-route-id="@Model.ComicId" class="btn btn-primary">Cancel</a>
 </form>

@@ -15,9 +15,9 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         private IRepository<Comic> comic { get; set; }
         private IRepository<Review> review { get; set; }
         private IRepository<User> user { get; set; }
-        public ReviewController(IRepository<Comic> ctxGame, IRepository<Review> ctxReview, IRepository<User> ctxUser)
+        public ReviewController(IRepository<Comic> ctxComic, IRepository<Review> ctxReview, IRepository<User> ctxUser)
         {
-            comic = ctxGame;
+            comic = ctxComic;
             review = ctxReview;
             user = ctxUser;
         }
@@ -33,8 +33,8 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
             ViewBag.SortOrder = sortOrder;
 
             CurrentComic.Current = comic.Get(id);
-            ViewBag.GameTitle = CurrentComic.Current.Title;
-            ViewBag.GameId = CurrentComic.Current.ComicId;
+            ViewBag.ComicTitle = CurrentComic.Current.Title;
+            ViewBag.ComicId = CurrentComic.Current.ComicId;
 
             IEnumerable<Review> reviews;
             switch(sortOrder)
@@ -155,7 +155,7 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         public IActionResult Delete(Review r)
         {
             Console.WriteLine("Admin Review Delete Response");
-            ViewBag.GameId = CurrentComic.Current.ComicId;
+            ViewBag.ComicId = CurrentComic.Current.ComicId;
             review.Delete(r);
             review.Save();
             return RedirectToAction("List");

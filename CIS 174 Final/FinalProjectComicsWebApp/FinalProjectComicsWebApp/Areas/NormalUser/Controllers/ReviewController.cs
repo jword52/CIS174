@@ -12,12 +12,12 @@ namespace FinalProjectComicsWebApp.Areas.NormalUser.Controllers
     public class ReviewController : Controller
     {
         //repository setup
-        private IRepository<Comic> game { get; set; }
+        private IRepository<Comic> comic { get; set; }
         private IRepository<Review> review { get; set; }
         private IRepository<User> user { get; set; }
-        public ReviewController(IRepository<Comic> ctxGame, IRepository<Review> ctxReview, IRepository<User> ctxUser)
+        public ReviewController(IRepository<Comic> ctxComic, IRepository<Review> ctxReview, IRepository<User> ctxUser)
         {
-            game = ctxGame;
+            comic = ctxComic;
             review = ctxReview;
             user = ctxUser;
         }
@@ -32,9 +32,9 @@ namespace FinalProjectComicsWebApp.Areas.NormalUser.Controllers
             ViewBag.RatingSortParm = sortOrder == "rating_desc" ? "rating" : "rating_desc";
             ViewBag.SortOrder = sortOrder;
 
-            CurrentComic.Current = game.Get(id);
-            ViewBag.GameTitle = CurrentComic.Current.Title;
-            ViewBag.GameId = CurrentComic.Current.ComicId;
+            CurrentComic.Current = comic.Get(id);
+            ViewBag.ComicTitle = CurrentComic.Current.Title;
+            ViewBag.ComicId = CurrentComic.Current.ComicId;
 
             IEnumerable<Review> reviews;
             switch (sortOrder)
@@ -118,12 +118,12 @@ namespace FinalProjectComicsWebApp.Areas.NormalUser.Controllers
                 if (r.ReviewId == 0)
                 {
                     r.User = user.Get(CurrentUser.Current.UserId);
-                    r.Comic = game.Get(CurrentComic.Current.ComicId);
+                    r.Comic = comic.Get(CurrentComic.Current.ComicId);
                     review.Insert(r);
                 } else
                 {
                     r.User = user.Get(r.UserId);
-                    r.Comic = game.Get(r.ComicId);
+                    r.Comic = comic.Get(r.ComicId);
                     review.Update(r);
                 }
                 review.Save();
@@ -154,7 +154,7 @@ namespace FinalProjectComicsWebApp.Areas.NormalUser.Controllers
         public IActionResult Delete(Review r)
         {
             Console.WriteLine("User Review Delete Response");
-            ViewBag.GameId = CurrentComic.Current.ComicId;
+            ViewBag.ComicId = CurrentComic.Current.ComicId;
             review.Delete(r);
             review.Save();
             return RedirectToAction("List");

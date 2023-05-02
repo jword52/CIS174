@@ -11,12 +11,12 @@ namespace FinalProjectComicsWebApp.Controllers
     public class UserController : Controller
     {
         //repo setup
-        private IRepository<Comic> game { get; set; }
+        private IRepository<Comic> comic { get; set; }
         private IRepository<Review> review { get; set; }
         private IRepository<User> user { get; set; }
-        public UserController(IRepository<Comic> ctxGame, IRepository<Review> ctxReview, IRepository<User> ctxUser)
+        public UserController(IRepository<Comic> ctxComic, IRepository<Review> ctxReview, IRepository<User> ctxUser)
         {
-            game = ctxGame;
+            comic = ctxComic;
             review = ctxReview;
             user = ctxUser;
         }
