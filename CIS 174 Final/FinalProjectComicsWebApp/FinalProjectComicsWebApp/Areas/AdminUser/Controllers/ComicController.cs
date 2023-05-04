@@ -35,6 +35,7 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         [Route("AdminUser/Comic/Add")]
         public IActionResult Add()
         {
+            
             return View("Edit", new Comic());
         }
 

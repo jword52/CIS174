@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FinalProjectComicsWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using FinalProjectComicsWebApp.Models;
 
 namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
 {
@@ -72,7 +69,7 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         public IActionResult View(int id)
         {
             Console.WriteLine("Admin Review View Request");
-            Review re = null;
+            Review? re = null;
             var reviews = review.List(new QueryOptions<Review> { Includes = "User, Comic", Where = r => r.ReviewId == id });
             foreach (Review r in reviews)
             {
@@ -83,16 +80,21 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         }
 
         //returns a new review to the edit method, allows users to create a new review
-        [Route("AdminUser/Review/Add")]
+        //[Route("AdminUser/Review/Add")]
         [HttpGet]
         public IActionResult Add()
         {
             Console.WriteLine("Admin Review Add Request");
+            ViewBag.UserName = CurrentUser.Current.UserName;
+            ViewBag.UserId = CurrentUser.Current.UserId;
+            ViewBag.ComicTitle = CurrentComic.Current.Title;
+            ViewBag.ComicId = CurrentComic.Current.ComicId;
+
             return View("Edit", new Review());
         }
 
         //returns new or current review to edit to the edit page
-        [Route("AdminUser/Review/Edit")]
+        //[Route("AdminUser/Review/Edit")]
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -108,7 +110,7 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         }
 
         //allows users to add or edit reviews, saves to the database if not a failed edit, and returns finished review
-        [Route("AdminUser/Review/Edit")]
+        //[Route("AdminUser/Review/Edit")]
         [HttpPost]
         public IActionResult Edit(Review r)
         {
@@ -140,7 +142,7 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         }
 
         //allows users to delete their reviews, returns a review to the delete confirmation page
-        [Route("AdminUser/Review/Delete")]
+        //[Route("AdminUser/Review/Delete")]
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -150,12 +152,14 @@ namespace FinalProjectComicsWebApp.Areas.AdminUser.Controllers
         }
 
         //carries out the delete after confirmation is given
-        [Route("AdminUser/Review/Delete")]
+        //[Route("AdminUser/Review/Delete")]
         [HttpPost]
         public IActionResult Delete(Review r)
         {
             Console.WriteLine("Admin Review Delete Response");
             ViewBag.ComicId = CurrentComic.Current.ComicId;
+            ViewBag.ReviewId = r.ReviewId;
+            ViewBag.Review = r;
             review.Delete(r);
             review.Save();
             return RedirectToAction("List");

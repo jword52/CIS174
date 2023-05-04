@@ -12,7 +12,7 @@ namespace FinalProjectComicsWebApp.Models
         public int ComicId { get; set; }
 
         [Required(ErrorMessage = "Please enter a title")]
-        public string Title { get; set; }
+        public string? Title { get; set; }
 
         public double Rating { get; set; }
 

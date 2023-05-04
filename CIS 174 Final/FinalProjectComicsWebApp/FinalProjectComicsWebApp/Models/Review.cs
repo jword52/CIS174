@@ -20,9 +20,9 @@ namespace FinalProjectComicsWebApp.Models
 
         [Required(ErrorMessage = "Please enter a rating")]
         [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
-        public int? Rating { get; set; }
+        public int Rating { get; set; }
 
         [Required(ErrorMessage = "Please enter a review")]
-        public string ReviewContent { get; set; }
+        public string? ReviewContent { get; set; }
     }
 }
